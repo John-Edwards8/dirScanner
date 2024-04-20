@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include <cstdio>
 #include "File.h"
 
 
@@ -23,11 +24,16 @@ std::vector<File> scanDirectory(const std::string& directoryPath) {
     return files;
 }
 
+std::string printColored(uintmax_t val) {
+    return "\033[1;32m" + static_cast<std::stringstream>(std::stringstream() << std::setprecision(2) << (val/1024/1024.0)).str() +"\033[0m";
+}
+
 void displayFiles(std::vector<File>& files) {
     for (auto& File : files) {
         auto time = File.getLastAT();
+        std::string size = printColored(File.getSize());
         std::cout << File.getName() << " - " << File.getPath() << " - "
-            << File.getExt() << " - " << File.getSize() << " bytes - "
+            << File.getExt() << " - " << size << " MB - "
             << std::asctime(std::localtime(&time));
     }
 }
