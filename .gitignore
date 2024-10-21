@@ -1,1 +1,7 @@
 /.vs
+/x64
+/dirScanner
+dirScanner.sln
+dirScanner.vcxproj
+dirScanner.vcxproj.user
+dirScanner.vcxproj.filters
